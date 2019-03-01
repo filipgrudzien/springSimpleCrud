@@ -18,8 +18,6 @@ public class Person {
 
     private int age;
 
-    public Person() {}
-
     public int getId() {
         return id;
     }
