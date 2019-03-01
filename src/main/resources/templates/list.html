@@ -28,12 +28,12 @@
         <td><span th:text="${person.address}"> address </span></td>
         <td><span th:text="${person.age}"> age </span></td>
         <td>
-            <form th:action="@{/delete/{id}(id=${person.id})}" th:object="${person}" method="get">
+            <form th:action="@{/delete/{id}(id=${person.id})}" th:object="${person}" method="post">
                 <input type="submit" value="delete" />
             </form>
         </td>
         <td>
-            <form th:action="@{/update/{id}(id=${person.id})}" th:object="${person}" method="get">
+            <form th:action="@{/edit/{id}(id=${person.id})}" th:object="${person}" method="get">
                 <input type="submit" value="update" />
             </form>
         </td>

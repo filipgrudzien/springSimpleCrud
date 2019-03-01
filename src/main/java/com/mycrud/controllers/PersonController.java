@@ -5,8 +5,10 @@ import com.mycrud.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,15 +41,27 @@ public class PersonController {
         return "index";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String deletePerson(@PathVariable int id){
         personRepo.deleteById(id);
         return "index";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editPerson(@ModelAttribute Person person){
+    public String editPerson(@PathVariable int id, Model model){
+
+        Person person = personRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("person", person);
         return "edit-person";
     }
 
+    @RequestMapping(value = "/update/{id}", method = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET})
+    public String updatePerson(@PathVariable("id") int id, Model model, @Valid Person person){
+
+        //Person person = (Person) model.asMap().get("person");
+        personRepo.save(person);
+        return "index";
+    }
 }
