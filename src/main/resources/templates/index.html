@@ -11,8 +11,41 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    Spring boot CRUD app - main page
-    <br>
+    <div>
+        <p class="main-header">Spring boot CRUD app - main page</p>
+    </div>
+        <br>
+
+
+    <div th:switch="${people}">
+        <h2 th:case="null">List of people is empty, go ahead and add some!</h2>
+        <div th:case="*">
+
+            <h2>List of people</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="person : ${people}">
+                    <td th:text="${person.id}"></td>
+                    <td th:text="${person.name}"></td>
+                    <td th:text="${person.address}"></td>
+                    <td th:text="${person.age}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${person.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${person.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
     <div>
         <a th:href="@{create}">Create new person</a>
         <br>
@@ -22,7 +55,7 @@
     <br>
     <br>
     <div th:fragment="copy">
-        &copy; 2019 spring boot CRUD app
+        <p class="main-header">&copy; Filip Grudzień 2019 spring boot CRUD app</p>
     </div>
 </body>
 </html>

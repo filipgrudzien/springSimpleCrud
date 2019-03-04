@@ -18,36 +18,32 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepo;
 
-    @GetMapping("/person")
-    public String showPerson() {
-        return "test";
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String showPersonList(Model model) {
-        model.addAttribute("people", personRepo.findAll());
-        return "list";
+    @RequestMapping("/")
+    public String showMainPage(){
+        return "index";
     }
 
     @GetMapping("/create")
-    public String greetingForm(Model model) {
+    public String showCreationForm(Model model) {
         model.addAttribute("person", new Person());
         return "form";
     }
 
     @PostMapping("/create")
-    public String personCreationSubmit(@ModelAttribute Person person) {
+    public String submitCreationForm(@ModelAttribute Person person, Model model) {
         personRepo.save(person);
+        model.addAttribute("people", personRepo.findAll());
         return "index";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String deletePerson(@PathVariable int id){
+    @GetMapping(value = "/delete/{id}")
+    public String deletePerson(@PathVariable int id, Model model){
         personRepo.deleteById(id);
+        model.addAttribute("people", personRepo.findAll());
         return "index";
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     public String editPerson(@PathVariable int id, Model model){
 
         Person person = personRepo.findById(id)
@@ -60,8 +56,8 @@ public class PersonController {
     @RequestMapping(value = "/update/{id}", method = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET})
     public String updatePerson(@PathVariable("id") int id, Model model, @Valid Person person){
 
-        //Person person = (Person) model.asMap().get("person");
         personRepo.save(person);
+        model.addAttribute("people", personRepo.findAll());
         return "index";
     }
 }
