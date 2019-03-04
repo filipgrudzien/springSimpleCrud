@@ -1,4 +1,82 @@
-.main-header{
-     text-align: center;
-     font-size: 11px;
- }
+div.title-div {
+    margin-top: 40px;
+    position: relative;
+}
+
+div.title-div h1 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Indie Flower', cursive;
+}
+
+.centred-content {
+    position: relative;
+    text-align:center;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-right-header {
+    margin-left: 15px;
+}
+
+.list-left-header {
+    margin-right: 15px;
+}
+
+.list-central-header {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-margin {
+    margin-bottom: 25px;
+    text-align:center;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-margin {
+    margin-top: 15px;
+}
+
+.back-color {
+    background-color: rgb(62, 197, 254);
+}
+
+.margined {
+    margin: 25px;
+}
+
+tr:nth-child(even) {
+    background: #CCC;
+}
+
+tr:nth-child(odd) {
+    background: #FFF;
+}
+
+/* cellpadding */
+.set-pad {
+padding: 5px 8px 5px 8px;
+}
+
+
+/* cellspacing */
+table { border-collapse: separate; border-spacing: 0; } /* cellspacing="5" */
+table { border-collapse: collapse; border-spacing: 0; }   /* cellspacing="0" */
+
+/* valign */
+th, td { vertical-align: top; }
+
+/* align (center) */
+table { margin: 0 auto; }

@@ -4,6 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>main-page</title>
+    <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -11,51 +12,57 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <div>
-        <p class="main-header">Spring boot CRUD app - main page</p>
+    <div class="title-div jumbotron">
+        <h1>Spring boot CRUD app</h1>
     </div>
-        <br>
 
+    <div class="centred-content" th:switch="${people}">
 
-    <div th:switch="${people}">
-        <h2 th:case="null">List of people is empty, go ahead and add some!</h2>
+        <h2 th:case="null"> List of people is empty, go ahead and add some! </h2>
+
         <div th:case="*">
 
-            <h2>List of people</h2>
-            <table>
+            <div class="header-margin text-center">
+                <h2>List of people</h2>
+            </div>
+
+            <table class="table-margin text-center">
+
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Age</th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                    </tr>
                 </thead>
+
                 <tbody>
-                <tr th:each="person : ${people}">
-                    <td th:text="${person.id}"></td>
-                    <td th:text="${person.name}"></td>
-                    <td th:text="${person.address}"></td>
-                    <td th:text="${person.age}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${person.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${person.id})}">Delete</a></td>
-                </tr>
+                    <tr th:each="person : ${people}">
+                        <td class="set-pad" th:text="${person.id}"></td>
+                        <td class="set-pad" th:text="${person.name}"></td>
+                        <td class="set-pad" th:text="${person.email}"></td>
+                        <td class="set-pad" th:text="${person.age}"></td>
+                        <td><a class="btn btn-primary btn-sm set-pad" th:href="@{/edit/{id}(id=${person.id})}">Edit</a></td>
+                        <td><a class="btn btn-danger btn-sm set-pad" th:href="@{/delete/{id}(id=${person.id})}">Delete</a></td>
+                    </tr>
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
 
+    <div class="container text-center margined">
+        <a th:href="@{add}" class="btn btn-link">Create new person</a>
+    </div>
 
-    <div>
-        <a th:href="@{create}">Create new person</a>
-        <br>
-        <a th:href="@{list}">List of all present people</a>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div th:fragment="copy">
-        <p class="main-header">&copy; Filip Grudzień 2019 spring boot CRUD app</p>
-    </div>
+    <footer class="page-footer font-small back-color">
+        <div class="footer-copyright text-center py-3">
+            © 2018 Copyright: Filip Grudzień 2019 spring boot CRUD app.
+        </div>
+    </footer>
+
 </body>
 </html>
