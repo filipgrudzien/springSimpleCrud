@@ -70,7 +70,6 @@ tr:nth-child(odd) {
 padding: 5px 8px 5px 8px;
 }
 
-
 /* cellspacing */
 table { border-collapse: separate; border-spacing: 0; } /* cellspacing="5" */
 table { border-collapse: collapse; border-spacing: 0; }   /* cellspacing="0" */
@@ -80,3 +79,8 @@ th, td { vertical-align: top; }
 
 /* align (center) */
 table { margin: 0 auto; }
+
+.fixed-margins {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

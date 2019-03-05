@@ -12,17 +12,19 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <div class="text-center title-div">
+    <div class="text-center title-div jumbotron">
         <h1>Person creator form</h1>
     </div>
-    <form action="#" th:action="@{/create}" th:object="${person}" method="post">
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
-        <p>Email: <input type="text" th:field="*{email}" /></p>
-        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
-        <p>Age: <input type="number" th:field="*{age}" /></p>
-        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p>
-        <p><input type="submit" value="Create" class="btn btn-success"/></p>
-    </form>
+    <div class="fixed-margins text-center table-margin">
+        <form class="text-center" action="#" th:action="@{/create}" th:object="${person}" method="post">
+            <p>Name: <input type="text" th:field="*{name}" /></p>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+            <p>Email: <input type="text" th:field="*{email}" /></p>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
+            <p>Age: <input type="number" th:field="*{age}" /></p>
+            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p>
+            <p><input type="submit" value="Create" class="btn btn-success"/></p>
+        </form>
+    </div>
 </body>
 </html>

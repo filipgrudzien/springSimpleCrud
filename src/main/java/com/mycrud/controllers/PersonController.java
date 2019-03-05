@@ -44,7 +44,7 @@ public class PersonController {
         return "index";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/delete/{id}")
     public String deletePerson(@PathVariable long id, Model model) {
 
         personService.deletePerson(id);
@@ -52,7 +52,8 @@ public class PersonController {
         return "index";
     }
 
-    @RequestMapping(value = "/edit/{id}", method = {RequestMethod.GET, RequestMethod.POST})
+    //@RequestMapping(value = "/edit/{id}", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/edit/{id}")
     public String editPerson(@PathVariable long id, Model model) {
 
         Person person = personService.getSpecificPerson(id);
@@ -60,7 +61,8 @@ public class PersonController {
         return "edit-person";
     }
 
-    @RequestMapping(value = "/update/{id}", method = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET})
+    //@RequestMapping(value = "/update/{id}", method = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/update/{id}")
     public String updatePerson(@PathVariable("id") long id, Model model, @Valid Person person, Errors errors) {
 
         if(errors.hasErrors()){

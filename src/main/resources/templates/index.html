@@ -12,15 +12,15 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <div class="title-div jumbotron">
+    <div class="title-div text-center jumbotron">
         <h1>Spring boot CRUD app</h1>
     </div>
 
-    <div class="centred-content" th:switch="${people}">
+    <div class="centred-content text-center" th:switch="${people}">
 
         <h2 th:case="null"> List of people is empty, go ahead and add some! </h2>
 
-        <div th:case="*">
+        <div class="text-center" th:case="*">
 
             <div class="header-margin text-center">
                 <h2>List of people</h2>
@@ -55,12 +55,12 @@
     </div>
 
     <div class="container text-center margined">
-        <a th:href="@{add}" class="btn btn-link">Create new person</a>
+        <a th:href="@{add}" class="btn btn-link btn-lg">Create new person</a>
     </div>
 
     <footer class="page-footer font-small back-color">
         <div class="footer-copyright text-center py-3">
-            © 2018 Copyright: Filip Grudzień 2019 spring boot CRUD app.
+            © 2019 Copyright: Filip Grudzień spring boot CRUD app.
         </div>
     </footer>
 
