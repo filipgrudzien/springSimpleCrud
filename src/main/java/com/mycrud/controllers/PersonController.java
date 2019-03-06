@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -21,11 +22,12 @@ public class PersonController {
     private PersonService personService;
 
     @RequestMapping("/")
-    public String showMainPage() {
+    public String showMainPage(Model model) {
+        model.addAttribute("people", personService.getAllPeople());
         return "index";
     }
 
-    @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/add")
     public String showCreationForm(Model model) {
         model.addAttribute("person", new Person());
         return "form";
@@ -49,7 +51,7 @@ public class PersonController {
 
         personService.deletePerson(id);
         model.addAttribute("people", personService.getAllPeople());
-        return "index";
+        return "redirect:/";
     }
 
     //@RequestMapping(value = "/edit/{id}", method = {RequestMethod.GET, RequestMethod.POST})
@@ -72,6 +74,6 @@ public class PersonController {
 
         personService.insertOrUpdatePerson(person);
         model.addAttribute("people", personService.getAllPeople());
-        return "index";
+        return "redirect:/";
     }
 }
